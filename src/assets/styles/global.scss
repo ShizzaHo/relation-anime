@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--textColor);
+}
+
+a, a:visited {
+    color: orange;
+}
