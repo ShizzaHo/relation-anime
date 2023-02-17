@@ -1,0 +1,11 @@
+.effect {
+  position: fixed;
+
+  width: 1024px;
+  height: 1024px;
+
+  background: radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 89, 0.3) 0%, rgba(41, 41, 41, 0.3) 100%);
+  opacity: 0.5;
+
+  z-index: -1;
+}

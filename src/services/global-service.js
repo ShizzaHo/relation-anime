@@ -1,4 +1,5 @@
 import GlobalStore from '../store/global';
+import Shikimori from './shikimori/index';
 
 class GlobalService {
 
@@ -7,6 +8,13 @@ class GlobalService {
             this._store = new GlobalStore(this);
         }
         return this._store;
+    }
+
+    get shikimori(){
+        if (!this._shikimori) {
+            this._shikimori = new Shikimori(this);
+        }
+        return this._shikimori;
     }
     
 }

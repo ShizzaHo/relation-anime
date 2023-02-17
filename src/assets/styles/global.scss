@@ -8,6 +8,7 @@ body {
     color: var(--textColor);
 }
 
-a, a:visited {
-    color: orange;
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
 }

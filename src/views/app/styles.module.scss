@@ -1,0 +1,118 @@
+.article {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.completeTitle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 70px;
+
+    display: none;
+
+    & > h1 {
+        font-family: 'Dela Gothic One', 'Roboto', 'Arial';
+        font-size: 2rem;
+        font-weight: 300;
+    }
+
+    &_show {
+        display: block;
+        opacity: 0;
+        animation: completeTitle-show 400ms forwards;
+        animation-delay: 400ms;
+    }
+}
+
+@keyframes completeTitle-show {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.completeControl {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    margin-bottom: 70px;
+
+    display: none;
+
+    & > div {
+        width: 260px;
+
+        display: flex;
+        flex-direction: column;
+
+        & > button {
+            background-color: white;
+            border: none;
+            outline: none;
+            padding: 15px 30px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            cursor: pointer;
+
+            transition: all 400ms ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        & > span {
+            text-decoration: underline;
+            cursor: pointer;
+
+            transition: all 400ms ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &_show {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        opacity: 0;
+        animation: completeControl-show 400ms forwards;
+        animation-delay: 400ms;
+    }
+}
+
+@keyframes completeControl-show {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

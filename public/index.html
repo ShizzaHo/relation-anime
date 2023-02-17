@@ -39,5 +39,22 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <div id="particles-js"></div>
+    <script src="./vendor/particles-js/particles.min.js"></script>
+    <script>
+      particlesJS.load('particles-js', './vendor/particles-js/config.json', function() {
+        // callback
+      });
+    </script>
+    <style>
+      #particles-js {
+        top: 0;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: -2;
+      }
+    </style>
   </body>
 </html>
