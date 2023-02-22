@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { makeAutoObservable, toJS } from 'mobx';
 import axios from 'axios';
+import { getCookieParam } from './../../utils/cookieManager/index';
+import szhRequest from '../../utils/szh-request';
 
 const HEADER_GET = {
     method: 'GET',
     headers: {
-        'User-Agent': 'Api Test',
-        Authorization:
-            'Bearer ZQQ-uFF3J6n0hX_pVHonZ_rn0aCUP1hQDJhTzP81N_w',
+        'User-Agent': 'Relation Anime',
+        Authorization: 'Bearer NONE',
     },
-}
+};
 
 class Shikimori {
     oneAnime = undefined;
@@ -38,13 +39,16 @@ class Shikimori {
         this.useFindedAnimeCallback = callback;
     };
 
-    searchAnime = async (value,limit) => {
-        const response = await axios.get(`https://shikimori.one/api/animes?search=${value}&limit=${limit}`, HEADER_GET);
+    searchAnime = async (value, limit) => {
+        const response = await szhRequest.get(`https://shikimori.one/api/animes?search=${value}&limit=${limit}`, {
+            header: {
+                'User-Agent': 'Relation Anime',
+                'Authorization': `Bearer ${getCookieParam("access_token")}`,
+            },
+        });
 
-        this.findedAnimes = response.data;
+        this.findedAnimes = await response.json();
         this.useFindedAnimeCallback(this.findedAnimes);
-
-        return response.data;
     };
 
     setAnime = (num, obj) => {
@@ -59,6 +63,41 @@ class Shikimori {
                 break;
             default:
                 break;
+        }
+    };
+
+    getToken = async (code) => {
+        const response = await szhRequest.post('https://shikimori.one/oauth/token', {
+            header: {
+                'User-Agent': 'Relation Anime',
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: {
+                grant_type: 'authorization_code',
+                client_id: '3ejSu5YHMfo_mN5h7O2_dBvWaWDRYbEjyDZFn02G09Y',
+                client_secret: '9LmOTk8FeO2l7o_rGyHMQFOJTZajDfmVlvWPjmDUXQU',
+                'code': code,
+                'redirect_uri': 'https://localhost:3000/auth'
+            },
+        });
+
+        return await response.json();
+    };
+
+    checkTokenActuality = async (token) => {
+        // POSTMAN CODE SNIPPET
+
+        const response = await szhRequest.get('https://shikimori.one/api/users/whoami', {
+            header: {
+                'User-Agent': 'Relation Anime',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (response.status === 200) {
+            return true;
+        } else {
+            return false;
         }
     };
 

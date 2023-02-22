@@ -1,0 +1,48 @@
+.main {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    &__title {
+        font-family: 'Dela Gothic One', 'Roboto', 'Arial';
+        font-size: 2rem;
+        font-weight: 300;
+    }
+
+    &__button {
+        background-color: white;
+        border: none;
+        outline: none;
+        padding: 15px 30px;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        font-size: 15px;
+        cursor: pointer;
+
+        transition: all 400ms ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        font-family: 'Open Sans', 'Roboto', 'Arial';
+        font-size: 1.5rem;
+
+        & > span {
+            & > a,  & > a:visited {
+                color: white;
+            }
+        }
+    }
+}

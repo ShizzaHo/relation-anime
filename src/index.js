@@ -7,6 +7,7 @@ import GlobalService from './services/global-service';
 
 import App from './views/app';
 import ServicesProvider from './components/servicesProvider';
+import Auth from './views/auth';
 
 const service = new GlobalService();
 
@@ -16,6 +17,7 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<App />} />
+                <Route path='/auth' element={<Auth />} />
             </Routes>
         </BrowserRouter>
     </ServicesProvider>

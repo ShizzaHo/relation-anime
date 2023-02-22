@@ -3,9 +3,9 @@ import styles from './styles.module.scss';
 import { Service } from '../../services/context';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
-import Poster from './../../components/poster/index';
 import BackgroundLight from '../../components/background-light';
 import SearchPosterContainer from '../../components/search-poster-container';
+import { getCookieParam } from './../../utils/cookieManager/index';
 
 function App() {
     const service = useContext(Service);
@@ -13,6 +13,26 @@ function App() {
     const [complete, setComplete] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const accessToken = getCookieParam("access_token")
+        if (!accessToken) {
+            navigate("/auth");
+        } else {
+            tokenCheck(accessToken)
+        }
+    }, []);
+
+    const tokenCheck = async (accessToken) => {
+        const result = await service.shikimori.checkTokenActuality(accessToken);
+
+        if(result){
+            // все круто, можно дальше пользоваться
+        } else {
+            // service.shikimori.refreshToken(getCookieParam("refresh_token"));
+            navigate("/auth")
+        }
+    }
 
     service.shikimori.useComplete(() => {
         setComplete(true);

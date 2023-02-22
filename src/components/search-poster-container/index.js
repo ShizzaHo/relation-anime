@@ -34,7 +34,6 @@ function SearchPosterContainer(props) {
     const callbacks = {
         selectedAnime: (item) => {
             service.shikimori.setAnime(props.position, item);
-            console.log(item);
             setSelectedAnime({
                 title: item.russian,
                 originalTitle: item.name,
@@ -59,16 +58,14 @@ function SearchPosterContainer(props) {
                     <ul className={styles.posterPre__search}>
                         {animeLists.map((item) => {
                             return (
-                                <>
-                                    <li
-                                        key={item.id}
-                                        onClick={() => {
-                                            callbacks.selectedAnime(item);
-                                        }}
-                                    >
-                                        {item.russian}
-                                    </li>
-                                </>
+                                <li
+                                    key={item.id}
+                                    onClick={() => {
+                                        callbacks.selectedAnime(item);
+                                    }}
+                                >
+                                    {item.russian}
+                                </li>
                             );
                         })}
                     </ul>
